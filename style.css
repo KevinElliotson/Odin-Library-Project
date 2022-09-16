@@ -1,0 +1,194 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    grid-template-columns: 1fr;
+}
+
+header{
+    background-color: gray;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.main-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    gap: 20px;
+}
+
+.card-icon{
+    width: 30px;
+}
+
+.edit-section{
+    border-bottom: 2px solid black;
+    grid-column: 1/3;
+    width: 100%;
+    background-color: #b1b1f5;
+    display: flex;
+    justify-content: space-between;
+}
+
+.book-title{
+    text-align: center;
+    grid-column: 1/3;
+    font-size: 2.5em;
+}
+
+.book-author{
+    grid-column: 1/3;
+    font-size: 1.5em;
+}
+
+.num-pages {
+    grid-column: 1/3;
+    font-size: 1.5em;
+}
+
+.if-read {
+    width: 100%;
+    grid-column: 1/3;
+    display: flex;
+    justify-content: center;
+}
+
+.completed{
+    background-color: green;
+}
+
+.in-progress{
+    background-color: blue;
+}
+
+.not-started{
+    background-color: red;
+}
+
+.book-card{
+    overflow: hidden;
+    border: 3px solid black;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 20px;
+    height: 400px;
+    /* width: 300px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 30px 3fr 2fr 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.add-card{
+    /* border: 3px solid black; */
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    height: 400px;
+    width: 300px;
+    border-radius: 10px;
+    align-self: center;
+}
+
+.add-button {
+    width: 75%;
+    opacity: 50%;
+}
+
+.add-button:hover{
+    opacity: 75%;
+}
+
+img {
+    width: 50px;
+}
+
+/* Form adding new book: */
+
+.new-book-form{
+    overflow: hidden;
+    border: 3px solid black;
+    display: grid;
+    grid-template-rows: 30px 1fr 1fr 1fr 2fr 50px;
+    grid-template-columns: 1fr 1fr;
+    /* justify-content: center;
+    align-items: center; */
+    height: 400px;
+    width: 300px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.form-header{
+    background-color: #b1b1f5;
+    grid-column: 1/3;
+    grid-row: 1/2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.new-book-title{
+    grid-column: 1/3;
+    grid-row: 2/3;
+    align-self: center;
+    justify-self: center;
+    padding: 10px;
+}
+
+.new-book-author{
+    grid-column: 1/3;
+    grid-row: 3/4;
+    align-self: center;
+    justify-self: center;
+}
+
+.new-book-page-count{
+    grid-column: 1/3;
+    grid-row: 4/5;
+    align-self: center;
+    justify-self: center;
+}
+
+.if-completed-div{
+    grid-column: 1/3;
+    grid-row: 5/6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.completed-pages-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+#completed-pages-input{
+    width: 50px;
+}
+
+.cancel{
+    background-color: red;
+    grid-column: 1/2;
+    grid-row: 6/7;
+}
+
+.confirm{
+    background-color: green;
+    grid-column: 2/3;
+    grid-row: 6/7;
+}
