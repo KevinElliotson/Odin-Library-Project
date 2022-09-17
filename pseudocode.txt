@@ -1,0 +1,16 @@
+Function order:
+
+"newFormFunction" deletes our newFormButton and creates our form elements and appends them inside our container
+"formSubmittedFunction" saves the info the user put into the form into our myLibrary array using our constructor function
+"cardCreatorFunction" creates the elements used for our book card, adds the info from our myLibrary array and appends it to the page.
+"replaceNewCardButton" re-creates the newFormButton and appends it to our container
+myLibrary[myLibrary.length - 1] would be the object containing the info the user had just submitted at that point. So:
+title = myLibrary[myLibrary.length - 1].title
+author = myLibrary[myLibrary.length - 1].author
+pagesRead = myLibrary[myLibrary.length - 1].pagesRead
+totalPages = myLibrary[myLibrary.length - 1].totalPages
+
+
+
+"formSubmittedFunction" contains:
+"constructorFunction"

@@ -68,6 +68,9 @@ function AddNewCard() {
     totalPagesInput.setAttribute("name", "new-page-count")
     totalPagesInput.setAttribute("id", "new-page-count-input")
     totalPagesInput.setAttribute("placeholder", "Ex: 304")
+    totalPagesInput.setAttribute("required", "")
+    totalPagesInput.setAttribute("min", "1")
+
 
     // Completed Book/Complete Pages input:
     const ifCompleted = document.createElement("div")
@@ -137,7 +140,7 @@ function AddNewCard() {
     confirmButton.setAttribute("class", "confirm")
     //confirmButton.setAttribute("type", "submit")
     confirmButton.innerHTML = "Confirm"
-    newBookForm.addEventListener("submit", CreateCard)
+    newBookForm.addEventListener("submit", FormSubmitFunction)
 
 
     // Appending Our Created Elements:
@@ -175,86 +178,11 @@ function AddNewCard() {
 
 
 
-function CreateCard(event) {
+function FormSubmitFunction(event) {
     event.preventDefault()
     console.log("CreateCard function fired")
-    console.log(newTitleInput.value)
-    console.log(newAuthorInput.value)
-    console.log(totalPagesInput.value)
-    let pagesRead = ""
-
-    if (ifCompletedSelect.value == "completed"){
-        pagesRead = "completed"
-    }else if (ifCompletedSelect.value == "not-started"){
-        pagesRead = "0"
-    }else if (ifCompletedSelect.value == "in-progress"){
-        pagesRead = completedPagesInput.value
-    }
-    myLibrary.push(new SavedBookConstructor(newTitleInput.value, newAuthorInput.value, totalPagesInput.value, pagesRead))
-
-    // Creating our Book Card Elements
-    const bookCard = document.createElement("div")
-    bookCard.setAttribute("class", "book-card")
-    //bookCard.setAttribute("data-card", )
-
-    // Edit/Delete buttons and container div
-    const editSection = document.createElement("div")
-    editSection.setAttribute("class", "edit-section")
-
-    const editCard = document.createElement("img")
-    editCard.setAttribute("class", "card-icon edit-card")
-    editCard.setAttribute("src", "images/pencil.svg")
-
-    const deleteCard = document.createElement("img")
-    deleteCard.setAttribute("class", "card-icon delete-card")
-    deleteCard.setAttribute("src", "images/delete-forever.svg")
-
-    // Book Title:
-    const bookTitle = document.createElement("h3")
-    bookTitle.setAttribute("class", "book-title")
-    
-
-    // Author:
-    const bookAuthor = document.createElement("h4")
-    bookAuthor.setAttribute("class", "book-author")
-
-    // Pages:
-    const numPages = document.createElement("h4")
-    numPages.setAttribute("class", "num-pages")
-
-    // If Read Section
-    const ifRead = document.createElement("div")
-    const ifReadImg = document.createElement("img")
-
-    if (ifCompletedSelect.value == "completed") {
-        ifReadImg.setAttribute("src", "images/check.svg")
-        ifReadImg.setAttribute("class", "completed")
-    } else if (ifCompletedSelect.value == "in-progress") {
-        ifReadImg.innerHTML = "completedPagesInput.value / totalPageInput.value"
-        ifReadImg.setAttribute("class", "in-progress")
-    } else if (ifCompletedSelect.value == "not-started") {
-        ifReadImg.setAttribute("src", "images/window-close.svg")
-        ifReadImg.setAttribute("class", "not-started")
-    }
-
-
-    newBookForm.remove()
-
-    mainContainer.append(bookCard)
-    bookCard.append(editSection)
-    editSection.append(editCard)
-    editSection.append(deleteCard)
-    bookCard.append(bookTitle)
-    bookCard.append(bookAuthor)
-    bookCard.append(numPages)
-    bookCard.append(ifRead)
-    ifRead.append(ifReadImg)
-
+    BookCardCreator()
     CreateAddCardButton()
-
-
-
-
 
 }
 
@@ -286,6 +214,96 @@ function SavedBookConstructor(title, author, totalPages, pagesRead){
     this.pagesRead = pagesRead
 }
 
-// function BookCardCreator(){
+const bookCard0 = document.querySelector(`[data-id="0"]`)
 
-// }
+function BookCardCreator(){
+
+
+    let pagesRead = ""
+
+    if (ifCompletedSelect.value == "completed"){
+        pagesRead = "completed"
+    }else if (ifCompletedSelect.value == "not-started"){
+        pagesRead = "0"
+    }else if (ifCompletedSelect.value == "in-progress"){
+        pagesRead = completedPagesInput.value
+    }
+    myLibrary.push(new SavedBookConstructor(newTitleInput.value, newAuthorInput.value, totalPagesInput.value, pagesRead))
+
+
+    // Creating our Book Card Elements
+    const bookCard = document.createElement("div")
+    bookCard.setAttribute("class", "book-card")
+    bookCard.setAttribute("data-id", `${myLibrary.length - 1}`)
+
+    // Edit/Delete buttons and container div
+    const editSection = document.createElement("div")
+    editSection.setAttribute("class", "edit-section")
+
+    const editCard = document.createElement("img")
+    editCard.setAttribute("class", "card-icon edit-card")
+    editCard.setAttribute("src", "images/pencil.svg")
+
+    const deleteCard = document.createElement("img")
+    deleteCard.setAttribute("class", "card-icon delete-card")
+    deleteCard.setAttribute("src", "images/delete-forever.svg")
+
+    // Book Title:
+    const bookTitle = document.createElement("h3")
+    bookTitle.setAttribute("class", "book-title")
+    bookTitle.innerHTML = newTitleInput.value
+    
+
+    // Author:
+    const bookAuthor = document.createElement("h4")
+    bookAuthor.setAttribute("class", "book-author")
+    bookAuthor.innerHTML = newAuthorInput.value
+
+    // Pages:
+    const numPages = document.createElement("h4")
+    numPages.setAttribute("class", "num-pages")
+    numPages.innerHTML = `Pages: ${totalPagesInput.value}`
+
+    // If Read Section
+    const ifRead = document.createElement("div")
+    let ifReadImg = "";
+    if (ifCompletedSelect.value == "completed") {
+        ifReadImg = document.createElement("p")
+        ifReadImg.innerHTML = `Pages Read: ${totalPagesInput.value} / ${totalPagesInput.value}`
+        ifRead.setAttribute("class", "if-read completed")
+    } else if (ifCompletedSelect.value == "in-progress") {
+        ifReadImg = document.createElement("p")
+        ifReadImg.innerHTML = `Pages Read: ${completedPagesInput.value} / ${totalPagesInput.value}`
+        ifRead.setAttribute("class", "if-read in-progress")
+    } else if (ifCompletedSelect.value == "not-started") {
+        ifReadImg = document.createElement("p")
+        ifReadImg.innerHTML = `Pages Read: 0 / ${totalPagesInput.value}`
+        ifRead.setAttribute("class", "if-read not-started")
+    }
+
+
+    newBookForm.remove()
+
+    mainContainer.append(bookCard)
+    bookCard.append(editSection)
+    editSection.append(editCard)
+    editSection.append(deleteCard)
+    bookCard.append(bookTitle)
+    bookCard.append(bookAuthor)
+    bookCard.append(numPages)
+    bookCard.append(ifRead)
+    ifRead.append(ifReadImg)
+}
+
+
+// Trying to clean up our functions:
+
+function CreateAllBooksFunction(){
+    myLibrary.forEach(element => {
+        title = element.title
+        author = element.author
+        pagesRead = element.pagesRead
+        totalPages = element.totalPages
+    });
+
+}
