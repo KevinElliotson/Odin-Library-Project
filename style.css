@@ -127,6 +127,8 @@ img {
 
 /* Form adding new book: */
 
+
+
 .new-book-form{
     overflow: hidden;
     border: 3px solid black;
@@ -136,10 +138,11 @@ img {
     /* justify-content: center;
     align-items: center; */
     height: 400px;
-    width: 300px;
+
     border-radius: 10px;
-    margin-top: 20px;
+    margin: 20px;
 }
+
 
 .form-header{
     background-color: #b1b1f5;
@@ -156,7 +159,8 @@ img {
     grid-row: 2/3;
     align-self: center;
     justify-self: center;
-    padding: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 .new-book-author{
@@ -164,6 +168,8 @@ img {
     grid-row: 3/4;
     align-self: center;
     justify-self: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .new-book-page-count{
@@ -171,6 +177,8 @@ img {
     grid-row: 4/5;
     align-self: center;
     justify-self: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .if-completed-div{
@@ -185,6 +193,7 @@ img {
 
 .completed-pages-div{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 10px;
@@ -204,4 +213,16 @@ img {
     background-color: green;
     grid-column: 2/3;
     grid-row: 6/7;
+}
+
+
+label{
+    display: inline-block;
+    width: 250px;
+    text-align: center;
+}
+
+input{
+    align-self: center;
+    width: 220px;
 }
