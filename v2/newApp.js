@@ -4,15 +4,19 @@
     let myLibrary = []
 })()
 
-function CardConstructor(title, author, totalPages, pagesRead) {
+function completionStatus(totalPages, pagesRead) {
+    if (totalPages == pagesRead) { return true }
+    if (pagesRead > 0) {return 'In progress'}
+    return false
+}
+
+function CardConstructor(id, title, author, totalPages, pagesRead) {
+    this.id = id
     this.title = title;
     this.author = author;
     this.totalPages = totalPages;
     this.pagesRead = pagesRead;
-    this.completionStatus = function () {
-        if (pagesRead > 0 && totalPages == pagesRead) { return true }
-        pagesRead > 0 ? totalPages - pagesRead : false
-    }
+    this.completionStatus = completionStatus(totalPages, pagesRead)
 }
 
 function formCreator() {
@@ -106,6 +110,15 @@ function appendForm() {
 }
 
 function submitForm(){
-    
+
+    let id = myLibrary.length
+    const newBook = CardConstructor(
+        id,
+        titleInput.value,
+        authorInput.value,
+        totalPagesInput.value,
+        pagesReadInput.value
+    )
     myLibrary.push()
+
 }
